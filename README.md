@@ -1,12 +1,13 @@
-# About booktrack-cli
+# :books: About booktrack-cli
 
-:books: **booktrack-cli** is a booktracking application for commandline enthusiasts. One focus of the development is an extensive availability of reading statistics.
+ **booktrack-cli** is a booktracking application for commandline enthusiasts. One focus of the development is an extensive availability of reading statistics.
+
+:construction: This is a relatively new project and there are still some important features missing. Feel free to give your feedback!
 
 # Features
 
 - Complete functionality is available on the commandline interface
 - Libraries are stored in an open, human readable format (JSON)
-- **booktrack-cli** will always be open source and free-to-use
 
 # Getting Started
 
@@ -86,11 +87,12 @@ pip install lizard
 python3 -m lizard -s cyclomatic_complexity ./src
 ```
 
-# Contributing & Community
-
 # Acknowledgements
 
-**booktrack-cli** was written by the help of some awesome opensource projects:
+**booktrack-cli** was written by the help of some awesome open source projects (in alphabetical order):
 
-- [CLI11](https://cliutils.github.io/CLI11/book/)
-- [JSON for Modern C++](https://json.nlohmann.me/)
+- [ClangFormat](https://clang.llvm.org/docs/ClangFormat.html): for code formatting with the built-in `Chromium` style
+- [CLI11](https://cliutils.github.io/CLI11/book/): a modern and feature rich command line parsing library
+- [CMake](https://cmake.org/): the tool of choice to build **booktrack-cli**
+- [JSON for Modern C++](https://json.nlohmann.me/): making the use of JSON in C++ real fun
+- [Lizard](https://pythonlang.dev/repo/terryyin-lizard/): Cyclomatic Complexity Analyzer written in Python
