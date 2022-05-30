@@ -6,6 +6,11 @@ project("booktrack-cli"
     LANGUAGES CXX
 )
 
+configure_file(
+    src/version.h.in
+    version.h
+)
+
 include(FetchContent)
 FetchContent_Declare(
   cli11
@@ -35,6 +40,11 @@ target_link_libraries(${PROJECT_NAME}
         nlohmann_json::nlohmann_json
         CLI11::CLI11
         ${PROJECT_NAME}-lib
+)
+
+target_include_directories(${PROJECT_NAME}
+    PUBLIC
+        ${PROJECT_BINARY_DIR}
 )
 
 if(WITH_TESTS)

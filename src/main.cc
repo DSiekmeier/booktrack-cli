@@ -1,6 +1,11 @@
+#include <sstream>
+#include <string>
+#include <vector>
+
 #include <CLI/CLI.hpp>
 #include <nlohmann/json.hpp>
 
+#include <version.h>
 #include "book.h"
 #include "cli.h"
 #include "library.h"
@@ -8,8 +13,6 @@
 using namespace booktrack_cli;
 
 namespace {
-const std::string kProgramVersion{"0.1.0"};
-
 std::vector<int> split(const std::string& s, char delim) {
   std::vector<int> elems;
   std::stringstream ss(s);
@@ -52,7 +55,14 @@ void SubcmdDelete(const CliOptions& options) {
 
 void AddCliOptions(CLI::App& app, CliOptions& options) {
   // add main options
-  app.set_version_flag("--version", kProgramVersion);
+  app.set_version_flag("--version", []() {
+    std::stringstream version_string;
+    version_string << BOOKTRACK_CLI_VERSION_MAJOR << "."
+                   << BOOKTRACK_CLI_VERSION_MINOR << "."
+                   << BOOKTRACK_CLI_VERSION_PATCH;
+    return "booktrack-cli v" + version_string.str();
+  });
+
   app.add_option("-l,--library,", options.library_file_path,
                  "Set the path of the library")
       ->mandatory();
