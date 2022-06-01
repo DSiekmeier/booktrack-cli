@@ -7,8 +7,8 @@ add_executable(${PROJECT_NAME}-test
     book_readingtime_test.cc
     book_tojsonstring_test.cc
 
-    # Tests for the "Library" class
-    library_constructor_test.cc
+    # Tests for the free functions in utilities
+    utilities_test.cc
 )
 
 target_include_directories(${PROJECT_NAME}-test

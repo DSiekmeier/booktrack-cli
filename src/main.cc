@@ -1,4 +1,3 @@
-#include <sstream>
 #include <string>
 #include <vector>
 
@@ -9,19 +8,11 @@
 #include "book.h"
 #include "cli.h"
 #include "library.h"
+#include "utilities.h"
 
 using namespace booktrack_cli;
 
 namespace {
-std::vector<int> split(const std::string& s, char delim) {
-  std::vector<int> elems;
-  std::stringstream ss(s);
-  std::string number;
-  while (std::getline(ss, number, delim)) {
-    elems.push_back(std::stoi(number));
-  }
-  return elems;
-}
 
 void SubcmdList(const CliOptions& options) {
   Library library_from_file(options.library_file_path);
@@ -34,13 +25,13 @@ void SubcmdAdd(const CliOptions& options) {
                 options.add.shelf);
 
   // add start reading date
-  auto start = split(options.add.reading_start, '.');
+  auto start = SplitDateComponents(options.add.reading_start, '.');
   if (start.size() == 3) {
     new_book.SetReadingStart(start[0], start[1], start[2]);
   }
 
   // add end reading date
-  auto end = split(options.add.reading_end, '.');
+  auto end = SplitDateComponents(options.add.reading_end, '.');
   if (end.size() == 3) {
     new_book.SetReadingEnd(end[0], end[1], end[2]);
   }

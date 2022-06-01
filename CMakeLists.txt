@@ -29,6 +29,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 add_library(${PROJECT_NAME}-lib
     src/book.cc
     src/library.cc
+    src/utilities.cc
 )
 
 add_executable(${PROJECT_NAME}
