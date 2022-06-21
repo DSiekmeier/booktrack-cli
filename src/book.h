@@ -7,12 +7,19 @@
 
 namespace booktrack_cli {
 
-// represents the start and end of reading a book
+/**
+ * @brief Structure used to store start and end of book reading
+ */
 struct reading_time {
   time_t date_start;
   time_t date_end;
 };
 
+/**
+ * @brief Represents a single book in a library
+ * @details The Book class contains every information about a single book.
+ * Several Book instances built up one Library.
+ */
 class Book {
  public:
   Book() = default;
@@ -21,18 +28,55 @@ class Book {
                 unsigned int pages = 0,
                 const std::string& shelf = "");
 
+  /**
+   * @brief Serializes the current book into a JSON string
+   */
   std::string ToJsonString() const;
 
-  // Getters
+  /**
+   * @brief Get the title of the current book
+   */
   inline auto GetTitle() const { return title_; };
+
+  /**
+   * @brief Get the author of the current book
+   */
   inline auto GetAuthor() const { return author_; }
+
+  /**
+   * @brief Get the reading time of the current book in days
+   */
   inline auto GetReadingTimeDays() const { return reading_time_days_; }
+
+  /**
+   * @brief Get the number of pages of the current book
+   */
   inline auto GetPages() const { return pages_; }
+
+  /**
+   * @brief Get the shelf to which the current book belongs to
+   */
   inline auto GetShelf() const { return shelf_; }
 
-  // Setters
+  /**
+   * @brief Set the start of a reading of a book
+   *
+   * \return true on success
+   */
   bool SetReadingStart(const int day, const int month, const int year);
+
+  /**
+   * @brief Set the end of a reading of a book
+   *
+   * \return true on success
+   */
   bool SetReadingEnd(const int day, const int month, const int year);
+
+  /**
+   * @brief Sets all information of a Book instance from a JSON object
+   *
+   * \return true on success
+   */
   void SetDataFromJson(const nlohmann::json& book_json);
 
  private:

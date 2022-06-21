@@ -56,7 +56,7 @@ If you want to compile **booktrack-cli** from source follow the below steps:
 git clone http://github.com/dsiekmeier/booktrack-cli
 
 # Build with CMake
-cmake -S. Bbuild
+cmake -S. -Bbuild
 cmake --build build
 
 # Run the compiled executable
@@ -67,12 +67,24 @@ Unit tests for **booktrack-cli** are written using [GoogleTest](https://google.g
 
 ```bash
 # Build with CMake
-cmake -S. Bbuild -DWITH_TESTS=ON
+cmake -S. -Bbuild -DWITH_TESTS=ON
 cmake --build build
 
 # Run all tests
 ./build/test/BooktrackCLI-test
 ```
+
+## Generating API documentation
+
+The source code of **booktrack-cli** is (more or less...) annotated using [Doxygen](https://www.doxygen.nl/index.html) comments. This has to be available on your system. You can generate a HTML based documentation via CMake:
+
+```bash
+# Build with CMake
+cmake -S. -Bbuild -DWITH_DOCS=ON
+cmake --build build
+```
+
+The result will than be located at `./build/generated_docs/html/`.
 
 ## Code complexity
 

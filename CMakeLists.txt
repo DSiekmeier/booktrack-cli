@@ -22,6 +22,7 @@ FetchContent_MakeAvailable(cli11)
 find_package(nlohmann_json 3.7.0 REQUIRED)
 
 option(WITH_TESTS "Build tests" OFF)
+option(WITH_DOCS "Generate documantation" OFF)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
@@ -50,4 +51,8 @@ target_include_directories(${PROJECT_NAME}
 
 if(WITH_TESTS)
     add_subdirectory(test)
+endif()
+
+if(WITH_DOCS)
+    add_subdirectory(docs)
 endif()

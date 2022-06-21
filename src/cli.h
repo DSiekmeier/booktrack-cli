@@ -5,7 +5,9 @@
 
 namespace booktrack_cli {
 
-// options for "add" subcommand
+/**
+ * @brief Contains available options for the "add" subcommand
+ */
 struct CliOptionsAdd {
   std::string author;
   std::string title;
@@ -15,11 +17,17 @@ struct CliOptionsAdd {
   std::string reading_end;
 };
 
-// options for "delete" subcommand
+/**
+ * @brief Contains available options for the "delete" subcommand
+ */
 struct CliOptionsDel {
   std::string title;
 };
 
+
+/**
+ * @brief Structure containing all options for the command line interface
+ */
 struct CliOptions {
   std::string library_file_path;
   CliOptionsAdd add;
