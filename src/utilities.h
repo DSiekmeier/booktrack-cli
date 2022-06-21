@@ -1,3 +1,6 @@
+#ifndef BOOKTRACK_CLI_UTILITIES_H
+#define BOOKTRACK_CLI_UTILITIES_H
+
 #include <sstream>
 #include <string>
 #include <vector>
@@ -16,3 +19,5 @@ std::vector<int> SplitDateComponents(const std::string& date_string,
                                      const char delimiter);
 
 }  // namespace booktrack_cli
+
+#endif
