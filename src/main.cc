@@ -23,6 +23,7 @@ void SubcmdAdd(const CliOptions& options) {
   Library library_from_file(options.library_file_path);
   Book new_book(options.add.title, options.add.author, options.add.pages,
                 options.add.shelf);
+  new_book.SetId(library_from_file.GetMaxUsedId() + 1);
 
   // add start reading date
   auto start = SplitDateComponents(options.add.reading_start, '.');

@@ -33,7 +33,7 @@ You can see a full list of commandline options below.
 
 ```bash
 booktrack_cli
-Usage: ./build/booktrack-cli [OPTIONS] SUBCOMMAND
+Usage: ./booktrack-cli [OPTIONS] SUBCOMMAND
 
 Options:
   -h,--help                   Print this help message and exit
@@ -41,9 +41,14 @@ Options:
   -l,--library TEXT REQUIRED  Set the path of the library
 
 Subcommands:
-  list                        List books in the given library
-  add                         Add a book to the given library
+  list                        List books in the library
+  add                         Add a book to the library
+  delete                      Delete a book from the library
 ```
+
+## Notes
+
+1. **Do not consider the `Book ID` to be immutable:** if one deletes a book entry right in the middle of the library, there will be a gap in the series of book IDs. In future program versions, there will be some "housekeeping" mechanism, which reassigns the book IDs. Invoking the `list` subcommand will never change the book ID and can therefore be used to get the valid state of the book IDs.
 
 # Development
 

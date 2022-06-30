@@ -17,6 +17,7 @@ std::string Book::ToJsonString() const {
 
   // meta information
   book_json["shelf"] = shelf_;
+  book_json["id"] = id_;
 
   // reading information
   auto start_ticks = reading_.date_start;
@@ -43,6 +44,7 @@ void Book::SetDataFromJson(const nlohmann::json& book_json) {
   UpdateReadingTimeDays_();
 
   shelf_ = book_json["shelf"];
+  id_ = book_json["id"];
 }
 
 bool Book::SetReadingStart(const int day, const int month, const int year) {
@@ -75,4 +77,8 @@ void Book::UpdateReadingTimeDays_() {
     auto diff_hours = diff / 60 / 60;
     reading_time_days_ = diff_hours / 24 + 1;  // +1 to include end day
   }
+}
+
+void Book::SetId(const size_t id) {
+  id_ = id;
 }

@@ -9,8 +9,8 @@ using json = nlohmann::json;
 TEST(BookToJsonStringTest, GetJsonDefault) {
   // arrange
   const std::string expected{
-      "{\"bookinfo\":{\"author\":\"\",\"pages\":0,\"title\":\"title\"},"
-      "\"reading\":{\"end\":0,\"start\":0},\"shelf\":\"\"}"};
+      "{\"bookinfo\":{\"author\":\"\",\"pages\":0,\"title\":\"title\"},\"id\":"
+      "0,\"reading\":{\"end\":0,\"start\":0},\"shelf\":\"\"}"};
   Book book("title");
 
   // act
@@ -24,8 +24,8 @@ TEST(BookToJsonStringTest, GetJsonWithAuthor) {
   // arrange
   const std::string expected{
       "{\"bookinfo\":{\"author\":\"Jon "
-      "Doe\",\"pages\":0,\"title\":\"title\"},\"reading\":{\"end\":0,\"start\":"
-      "0},\"shelf\":\"\"}"};
+      "Doe\",\"pages\":0,\"title\":\"title\"},\"id\":0,\"reading\":{\"end\":0,"
+      "\"start\":0},\"shelf\":\"\"}"};
   Book book("title", "Jon Doe");
 
   // act

@@ -59,6 +59,11 @@ class Book {
   inline auto GetShelf() const { return shelf_; }
 
   /**
+   * @brief Get the library wide unique id of the book
+   */
+  inline auto GetId() const { return id_; }
+
+  /**
    * @brief Set the start of a reading of a book
    *
    * \return true on success
@@ -74,10 +79,13 @@ class Book {
 
   /**
    * @brief Sets all information of a Book instance from a JSON object
-   *
-   * \return true on success
    */
   void SetDataFromJson(const nlohmann::json& book_json);
+
+  /**
+   * @brief Sets the id of the book
+   */
+  void SetId(const size_t id);
 
  private:
   // book info
@@ -91,6 +99,7 @@ class Book {
 
   // meta information
   std::string shelf_{};
+  size_t id_{};
 
   // internal helper methods
   void UpdateReadingTimeDays_();

@@ -24,7 +24,6 @@ struct CliOptionsDel {
   std::string title;
 };
 
-
 /**
  * @brief Structure containing all options for the command line interface
  */

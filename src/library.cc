@@ -30,6 +30,12 @@ void Library::LoadFromFile_() {
     Book new_book;
     new_book.SetDataFromJson(book);
     AddBook(new_book);
+
+    // Update the maximum used book id
+    auto current_id = new_book.GetId();
+    if (current_id > max_used_id_) {
+      max_used_id_ = current_id;
+    }
   }
 }
 
@@ -75,21 +81,23 @@ std::string Library::ToJsonString_() const {
 }
 
 void Library::Dump() const {
+  constexpr size_t kLengthId{4};
   constexpr size_t kLengthAuthor{25};
   constexpr size_t kLengthTitle{40};
-  constexpr size_t kLengthPages{10};
-  constexpr size_t kLengthShelf{10};
-  constexpr size_t kLengthReading{10};
+  constexpr size_t kLengthPages{7};
+  constexpr size_t kLengthShelf{15};
+  constexpr size_t kLengthReading{6};
 
-  std::cout << std::left;
+  std::cout << std::endl << std::left;
+  std::cout << std::setw(kLengthId) << "ID";
   std::cout << std::setw(kLengthAuthor) << "AUTHOR";
   std::cout << std::setw(kLengthTitle) << "TITLE";
   std::cout << std::setw(kLengthPages) << "PAGES";
   std::cout << std::setw(kLengthShelf) << "SHELF";
   std::cout << std::setw(kLengthReading) << "DAYS";
   std::cout << std::endl;
-  for (size_t i = 0; i < (kLengthAuthor + kLengthTitle + kLengthPages +
-                          kLengthShelf + kLengthReading);
+  for (size_t i = 0; i < (kLengthId + kLengthAuthor + kLengthTitle +
+                          kLengthPages + kLengthShelf + kLengthReading);
        ++i) {
     std::cout << "-";
   }
@@ -97,6 +105,7 @@ void Library::Dump() const {
 
   for (const auto& book : library_books_) {
     std::cout << std::left;
+    std::cout << std::setw(kLengthId) << book.GetId();
     std::cout << std::setw(kLengthAuthor) << book.GetAuthor();
     std::cout << std::setw(kLengthTitle) << book.GetTitle();
     std::cout << std::setw(kLengthPages) << book.GetPages();
@@ -106,5 +115,6 @@ void Library::Dump() const {
   }
 
   std::cout << std::endl;
-  std::cout << "Number of books: " << library_books_.size() << std::endl;
+  std::cout << "Number of books: " << library_books_.size() << std::endl
+            << std::endl;
 }

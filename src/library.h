@@ -45,9 +45,15 @@ class Library {
    */
   Library& RemoveBookByTitle(std::string title);
 
+  /**
+   * @brief Get the currently maximum used book id
+   */
+  inline auto GetMaxUsedId() const { return max_used_id_; }
+
  private:
   std::vector<Book> library_books_;
   std::string library_file_path_{};
+  size_t max_used_id_{0};  // Stores the currently maximumx used book id
 
   void LoadFromFile_();
   std::string ToJsonString_() const;
