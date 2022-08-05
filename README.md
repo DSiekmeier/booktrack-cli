@@ -91,6 +91,10 @@ cmake --build build
 
 The result will than be located at `./build/generated_docs/html/`.
 
+## Static code analyzer
+
+Currently while building the souce code `clang-tidy` is invoked with a small set of rules. The number of rules might grow in future, especially regarding the [C++ Core Guidelines ](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines.html) and the ["modernize-*"](https://clang.llvm.org/extra/clang-tidy/checks/list.html) rules of clang-tidy. Please be aware that the build might take a little bit longer because of the analyzes.
+
 ## Code complexity
 
 From time to time the code complexity is measured using the [Lizard code complexity analyzer

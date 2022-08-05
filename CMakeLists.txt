@@ -24,8 +24,27 @@ find_package(nlohmann_json 3.7.0 REQUIRED)
 option(WITH_TESTS "Build tests" OFF)
 option(WITH_DOCS "Generate documantation" OFF)
 
+# Configure C++ standard and compiler verbosity
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+if (MSVC)
+    add_compile_options(/W4)
+else()
+    add_compile_options(-Wall -Wextra -pedantic)
+endif()
+# -----------------------------------------------
+
+# Configure static code analyzer
+set(CLANG_TIDY_NAME "clang-tidy")
+find_program(CLANG_TIDY_FOUND ${CLANG_TIDY_NAME})
+if(CLANG_TIDY_FOUND)
+    set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY_NAME})
+else()
+    message("warning: clang-tidy executable not found!")
+endif()
+# -----------------------------------------------
 
 add_library(${PROJECT_NAME}-lib
     src/book.cc
@@ -49,10 +68,14 @@ target_include_directories(${PROJECT_NAME}
         ${PROJECT_BINARY_DIR}
 )
 
+# Add unit tests to build
 if(WITH_TESTS)
     add_subdirectory(test)
 endif()
+# -----------------------------------------------
 
+# Add generation of documentation
 if(WITH_DOCS)
     add_subdirectory(docs)
 endif()
+# -----------------------------------------------
