@@ -89,8 +89,8 @@ class Book {
 
  private:
   // book info
-  std::string author_{};
   std::string title_{};
+  std::string author_{};
   unsigned int pages_{};
 
   // reading information

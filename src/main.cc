@@ -61,7 +61,7 @@ void AddCliOptions(CLI::App& app, CliOptions& options) {
   app.require_subcommand();
 
   // add subcommand "list" with options
-  auto sub_list = app.add_subcommand("list", "List books in the library")
+  app.add_subcommand("list", "List books in the library")
                       ->callback([&options]() { SubcmdList(options); });
 
   // add subcommand "add" with options

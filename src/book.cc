@@ -48,9 +48,10 @@ void Book::SetDataFromJson(const nlohmann::json& book_json) {
 }
 
 bool Book::SetReadingStart(const int day, const int month, const int year) {
-  struct std::tm start_date {
-    .tm_mday = day, .tm_mon = month - 1, .tm_year = year - 1900,
-  };
+  struct std::tm start_date {};
+  start_date.tm_mday = day;
+  start_date.tm_mon = month - 1;
+  start_date.tm_year = year - 1900;
 
   auto start_ticks = std::mktime(&start_date);
   reading_.date_start = start_ticks;
@@ -60,9 +61,10 @@ bool Book::SetReadingStart(const int day, const int month, const int year) {
 }
 
 bool Book::SetReadingEnd(const int day, const int month, const int year) {
-  struct std::tm end_date {
-    .tm_mday = day, .tm_mon = month - 1, .tm_year = year - 1900,
-  };
+  struct std::tm end_date {};
+  end_date.tm_mday = day;
+  end_date.tm_mon = month - 1;
+  end_date.tm_year = year - 1900;
 
   auto end_ticks = std::mktime(&end_date);
   reading_.date_end = end_ticks;
