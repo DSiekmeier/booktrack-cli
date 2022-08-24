@@ -1,7 +1,7 @@
 #include <string>
 #include <vector>
 
-#include <CLI/CLI.hpp>
+#include <CLI/CLI11.hpp>
 #include <nlohmann/json.hpp>
 
 #include <version.h>
