@@ -14,6 +14,7 @@ add_executable(${PROJECT_NAME}-test
 target_include_directories(${PROJECT_NAME}-test
     PRIVATE
         ${GTEST_INCLUDE_DIRS}
+        ${PROJECT_SOURCE_DIR}/external/
 )
 
 target_link_libraries(${PROJECT_NAME}-test
