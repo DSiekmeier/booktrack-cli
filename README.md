@@ -1,15 +1,18 @@
 # :books: About booktrack-cli
 
- **booktrack-cli** is a booktracking application for commandline enthusiasts. One focus of the development is an extensive availability of reading statistics.
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/dsiekmeier/booktrack-cli?style=flat-square) ![GitHub last commit](https://img.shields.io/github/last-commit/dsiekmeier/booktrack-cli?style=flat-square) ![GitHub](https://img.shields.io/github/license/dsiekmeier/booktrack-cli?style=flat-square)
+
+**booktrack-cli** is a booktracking application for commandline enthusiasts. One focus of the development is an extensive availability of reading statistics.
 
 :construction: This is a relatively new project and there are still some important features missing. Feel free to give your feedback!
 
-# Features
+## Features
 
 - Complete functionality is available on the commandline interface
 - Libraries are stored in an open, human readable format (JSON)
+- Your data belongs to you: no communication with any server is necessary
 
-# Getting Started
+## Getting Started
 
 Here is a short introduction how to use **booktrack-cli**.
 
@@ -17,16 +20,16 @@ Here is a short introduction how to use **booktrack-cli**.
 # Add a book with title only
 ./booktrack-cli -l ~/my_lib.json add -t "Clean Code"
 
-# Add a book with title and author
+# Add some books with title and author
 ./booktrack-cli -l ~/my_lib.json add -t "Refactoring" -a "Martin Fowler"
 ./booktrack-cli -l ~/my_lib.json add -t "Clean Code" -a "Robert C. Martin"
-./booktrack-cli -l ~/my_lib.json add -t "Effective Modern" -a "Scott Meyers"
+./booktrack-cli -l ~/my_lib.json add -t "Effective Modern C++" -a "Scott Meyers"
 
 # List all available books in the given library
 ./booktrack-cli -l ~/my_lib.json list
 
 # Delete a book from the given library by title
-./booktrack-cli -l ~/my_lib.json delete --title "Effective Modern"
+./booktrack-cli -l ~/my_lib.json delete --title "Effective Modern C++"
 ```
 
 You can see a full list of commandline options below.
@@ -52,61 +55,7 @@ Subcommands:
 
 # Development
 
-## Compiling from source
-
-If you want to compile **booktrack-cli** from source follow the below steps:
-
-```bash
-# Clone the project
-git clone http://github.com/dsiekmeier/booktrack-cli
-
-# Build with CMake
-cmake -S. -Bbuild
-cmake --build build
-
-# Run the compiled executable
-./build/booktrack-cli --help
-```
-
-Unit tests for **booktrack-cli** are written using [GoogleTest](https://google.github.io/googletest).
-
-```bash
-# Build with CMake
-cmake -S. -Bbuild -DWITH_TESTS=ON
-cmake --build build
-
-# Run all tests
-./build/test/BooktrackCLI-test
-```
-
-## Generating API documentation
-
-The source code of **booktrack-cli** is (more or less...) annotated using [Doxygen](https://www.doxygen.nl/index.html) comments. This has to be available on your system. You can generate a HTML based documentation via CMake:
-
-```bash
-# Build with CMake
-cmake -S. -Bbuild -DWITH_DOCS=ON
-cmake --build build
-```
-
-The result will than be located at `./build/generated_docs/html/`.
-
-## Static code analyzer
-
-Currently while building the souce code `clang-tidy` is invoked with a small set of rules. The number of rules might grow in future, especially regarding the [C++ Core Guidelines ](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines.html) and the ["modernize-*"](https://clang.llvm.org/extra/clang-tidy/checks/list.html) rules of clang-tidy. Please be aware that the build might take a little bit longer because of the analyzes.
-
-## Code complexity
-
-From time to time the code complexity is measured using the [Lizard code complexity analyzer
-](http://www.lizard.ws/) to check if there is need for refactoring some parts of the code.
-
-```bash
-# install the lizard
-pip install lizard
-
-# perform measurement of source folder
-python3 -m lizard -s cyclomatic_complexity ./src
-```
+Please refer to [DEVELOPMENT.md](DEVELOPMENT.md) for information about building **booktrack-cli** from source. Any contribution is appreciated.
 
 # Acknowledgements
 
@@ -116,4 +65,3 @@ python3 -m lizard -s cyclomatic_complexity ./src
 - [CLI11](https://cliutils.github.io/CLI11/book/): a modern and feature rich command line parsing library
 - [CMake](https://cmake.org/): the tool of choice to build **booktrack-cli**
 - [JSON for Modern C++](https://json.nlohmann.me/): making the use of JSON in C++ real fun
-- [Lizard](https://pythonlang.dev/repo/terryyin-lizard/): Cyclomatic Complexity Analyzer written in Python
