@@ -29,7 +29,7 @@ Here is a short introduction how to use **booktrack-cli**.
 ./booktrack-cli -l ~/my_lib.json list
 
 # Delete a book from the given library by title
-./booktrack-cli -l ~/my_lib.json delete --title "Effective Modern C++"
+./booktrack-cli -l ~/my_lib.json delete --by-title "Effective Modern C++"
 ```
 
 You can see a full list of commandline options below.

@@ -62,7 +62,7 @@ void AddCliOptions(CLI::App& app, CliOptions& options) {
 
   // add subcommand "list" with options
   app.add_subcommand("list", "List books in the library")
-                      ->callback([&options]() { SubcmdList(options); });
+      ->callback([&options]() { SubcmdList(options); });
 
   // add subcommand "add" with options
   auto sub_add = app.add_subcommand("add", "Add a book to the library")
@@ -78,7 +78,7 @@ void AddCliOptions(CLI::App& app, CliOptions& options) {
   auto sub_delete =
       app.add_subcommand("delete", "Delete a book from the library")
           ->callback([&options]() { SubcmdDelete(options); });
-  sub_delete->add_option("-t,--title", options.del.title, "")->mandatory();
+  sub_delete->add_option("--by-title", options.del.title, "")->mandatory();
 }
 
 }  // namespace
