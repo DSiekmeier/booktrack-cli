@@ -21,7 +21,8 @@ struct CliOptionsAdd {
  * @brief Contains available options for the "delete" subcommand
  */
 struct CliOptionsDel {
-  std::string title;
+  size_t id{0};
+  std::string title{};
 };
 
 /**

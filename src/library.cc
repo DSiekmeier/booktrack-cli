@@ -70,6 +70,18 @@ Library& Library::RemoveBookByTitle(std::string title) {
   return *this;
 }
 
+Library& Library::RemoveBookById(size_t id) {
+  auto it_begin = library_books_.begin();
+  auto it_end = library_books_.end();
+
+  auto it = std::remove_if(
+      it_begin, it_end, [id](const Book& book) { return book.GetId() == id; });
+
+  library_books_.erase(it, library_books_.end());
+
+  return *this;
+}
+
 std::string Library::ToJsonString_() const {
   json collection;
   for (const auto& book : library_books_) {
