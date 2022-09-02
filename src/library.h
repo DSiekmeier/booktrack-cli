@@ -46,6 +46,11 @@ class Library {
   Library& RemoveBookByTitle(std::string title);
 
   /**
+   * @brief Remove the book with \p id from the library
+   */
+  Library& RemoveBookById(size_t id);
+
+  /**
    * @brief Get the currently maximum used book id
    */
   inline auto GetMaxUsedId() const { return max_used_id_; }

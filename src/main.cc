@@ -42,7 +42,16 @@ void SubcmdAdd(const CliOptions& options) {
 
 void SubcmdDelete(const CliOptions& options) {
   Library library_from_file(options.library_file_path);
-  library_from_file.RemoveBookByTitle(options.del.title).StoreToFile();
+
+  if (options.del.id != 0) {
+    library_from_file.RemoveBookById(options.del.id).StoreToFile();
+    return;
+  }
+
+  if (!options.del.title.empty()) {
+    library_from_file.RemoveBookByTitle(options.del.title).StoreToFile();
+    return;
+  }
 }
 
 void AddCliOptions(CLI::App& app, CliOptions& options) {
@@ -78,7 +87,9 @@ void AddCliOptions(CLI::App& app, CliOptions& options) {
   auto sub_delete =
       app.add_subcommand("delete", "Delete a book from the library")
           ->callback([&options]() { SubcmdDelete(options); });
-  sub_delete->add_option("--by-title", options.del.title, "")->mandatory();
+  auto id = sub_delete->add_option("--by-id", options.del.id, "");
+  auto title = sub_delete->add_option("--by-title", options.del.title, "");
+  id->excludes(title);
 }
 
 }  // namespace
