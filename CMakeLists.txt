@@ -42,6 +42,7 @@ endif()
 # BUILD LIBRARY =====================================================
 add_library(${PROJECT_NAME}-lib OBJECT
     src/book.cc
+    src/cli.cc
     src/library.cc
     src/utilities.cc
 )
