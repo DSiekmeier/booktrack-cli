@@ -17,6 +17,7 @@ TEST(BookConstructorTest, CreateBook) {
   EXPECT_EQ(book.GetPages(), 0);
   EXPECT_EQ(book.GetReadingTimeDays(), 0);
   EXPECT_EQ(book.GetShelf(), "");
+  EXPECT_EQ(book.GetId(), 0);
 }
 
 TEST(BookConstructorTest, CreateBookWithTitle) {

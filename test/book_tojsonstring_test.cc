@@ -57,6 +57,7 @@ TEST(BookToJsonStringTest, JsonContainsAllKeysBookinfo) {
 
   // assert
   ASSERT_TRUE(parsed_json.contains("bookinfo"));
+  EXPECT_EQ(parsed_json["bookinfo"].size(), 3);
   EXPECT_TRUE(parsed_json["bookinfo"].contains("title"));
   EXPECT_TRUE(parsed_json["bookinfo"].contains("author"));
   EXPECT_TRUE(parsed_json["bookinfo"].contains("pages"));
