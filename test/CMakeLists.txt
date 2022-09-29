@@ -6,6 +6,7 @@ add_executable(${PROJECT_NAME}-test
     book_constructor_test.cc
     book_readingtime_test.cc
     book_tojsonstring_test.cc
+    book_setdatafromjson_test.cc
 
     # Tests for the free functions in utilities
     utilities_test.cc
