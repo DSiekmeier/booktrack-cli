@@ -73,6 +73,12 @@ target_link_libraries(${PROJECT_NAME}
 
 # ADD UNIT TESTS TO BUILD ===========================================
 if(WITH_TESTS)
+    # set flags for code coverage
+    SET(GCC_COVERAGE_COMPILE_FLAGS "--coverage")
+    SET(GCC_COVERAGE_LINK_FLAGS "-lgcov")
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}")
+    SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${GCC_COVERAGE_LINK_FLAGS}")
+
     add_subdirectory(test)
 endif()
 # ===================================================================
