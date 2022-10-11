@@ -25,7 +25,11 @@ void AddListOptions(CLI::App& app, CliOptions& opt) {
       app.add_subcommand("list", "List books in the library")
           ->callback([&opt]() { opt.command = PrimaryCommand::kList; });
 
-  sub_list->add_option("-a,--author", opt.list.filter_author, "");
+  auto author = sub_list->add_option("-a,--author", opt.list.filter_author, "");
+  auto title = sub_list->add_option("-t,--title", opt.list.filter_title, "");
+
+  // constraints
+  author->excludes(title);
 }
 
 void AddAddOptions(CLI::App& app, CliOptions& opt) {
@@ -48,6 +52,8 @@ void AddDeleteOptions(CLI::App& app, CliOptions& opt) {
 
   auto id = sub_delete->add_option("--by-id", opt.del.id, "");
   auto title = sub_delete->add_option("--by-title", opt.del.title, "");
+
+  // constraints
   id->excludes(title);
 }
 

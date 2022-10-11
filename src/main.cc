@@ -14,10 +14,20 @@ using namespace booktrack_cli;
 namespace {
 
 void SubcmdList(Library& lib, const CliOptionsList& options) {
-  if (options.filter_author.empty()) {
+  if (options.filter_author.empty() && options.filter_title.empty()) {
     DumpBookCollection(lib.GetBookCollection());
-  } else {
+    return;
+  }
+
+  // filter by author
+  if (!options.filter_author.empty()) {
     auto filtered_lib = lib.GetBookCollection("author", options.filter_author);
+    DumpBookCollection(filtered_lib);
+  }
+
+  // filter by title
+  if (!options.filter_title.empty()) {
+    auto filtered_lib = lib.GetBookCollection("title", options.filter_title);
     DumpBookCollection(filtered_lib);
   }
 }

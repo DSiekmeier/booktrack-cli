@@ -28,8 +28,9 @@ Here is a short introduction how to use **booktrack-cli**.
 # List all available books in the given library
 ./booktrack-cli -l ~/my_lib.json list
 
-# List all books in the given library filtered by author (case insensitive)
-./booktrack-cli -l ~/my_lib.json list -a "martin fowler"
+# List all books in the given library with a filter (case insensitive)
+./booktrack-cli -l ~/my_lib.json list --author "martin fowler"
+./booktrack-cli -l ~/my_lib.json list --title "Clean Code"
 
 # Delete a book from the given library by title
 ./booktrack-cli -l ~/my_lib.json delete --by-title "Effective Modern C++"
@@ -58,6 +59,8 @@ Subcommands:
 ## Notes
 
 1. **Do not consider the `Book ID` to be immutable:** if one deletes a book entry right in the middle of the library, there will be a gap in the series of book IDs. In future program versions, there will be some "housekeeping" mechanism, which reassigns the book IDs. Invoking the `list` subcommand will never change the book ID and can therefore be used to get the valid state of the book IDs.
+
+2. **Filter options are exclusive:** this means, that currently one can only filter the library with the `list` subcommand by using one of the options at the same time, e.g. `--author` or `--title` but not both. Also note, that the filter is case insensitive but compares the whole given text.
 
 # Development
 

@@ -113,6 +113,16 @@ std::vector<Book> Library::GetBookCollection(const std::string& filter,
         filter_list.push_back(book);
       }
     }
+  } else if (filter == "title") {
+    for (const auto& book : library_books_) {
+      std::string current_title = book.GetTitle();
+      std::string current_title_lowercase;
+      std::transform(current_title.begin(), current_title.end(),
+                     std::back_inserter(current_title_lowercase), tolower);
+      if (current_title_lowercase == value_lowercase) {
+        filter_list.push_back(book);
+      }
+    }
   }
   return filter_list;
 }
