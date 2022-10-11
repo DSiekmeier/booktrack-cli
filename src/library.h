@@ -31,11 +31,6 @@ class Library {
   void StoreToFile();
 
   /**
-   * @brief Dump the list of books inside the library to std::cout
-   */
-  void Dump() const;
-
-  /**
    * @brief Add a new book to the library
    */
   Library& AddBook(Book book);
@@ -54,6 +49,11 @@ class Library {
    * @brief Get the currently maximum used book id
    */
   inline auto GetMaxUsedId() const { return max_used_id_; }
+
+  /**
+   * @brief Get the complete library as a vector of Books
+   */
+  inline auto GetBookCollection() const { return library_books_; }
 
  private:
   std::vector<Book> library_books_;
