@@ -13,6 +13,11 @@ using namespace booktrack_cli;
 
 namespace {
 
+void SubcmdList(Library& lib, const CliOptionsList& options) {
+  // TODO: evaluate passed options
+  DumpBookCollection(lib.GetBookCollection());
+}
+
 void SubcmdAdd(Library& lib, const CliOptionsAdd& options) {
   Book new_book(options.title, options.author, options.pages, options.shelf);
   new_book.SetId(lib.GetMaxUsedId() + 1);
@@ -62,7 +67,7 @@ int main(int argc, char* argv[]) {
       SubcmdDelete(library_from_file, options.del);
       break;
     case PrimaryCommand::kList:
-      library_from_file.Dump();
+      SubcmdList(library_from_file, options.list);
       break;
     default:
       break;
