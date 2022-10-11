@@ -91,3 +91,28 @@ std::string Library::ToJsonString_() const {
 
   return collection.dump();
 }
+
+std::vector<Book> Library::GetBookCollection(const std::string& filter,
+                                             const std::string& value) const {
+  if (filter.empty()) {
+    return library_books_;
+  }
+
+  std::string value_lowercase;
+  std::transform(value.begin(), value.end(),
+                 std::back_inserter(value_lowercase), tolower);
+
+  std::vector<Book> filter_list;
+  if (filter == "author") {
+    for (const auto& book : library_books_) {
+      std::string current_author = book.GetAuthor();
+      std::string current_author_lowercase;
+      std::transform(current_author.begin(), current_author.end(),
+                     std::back_inserter(current_author_lowercase), tolower);
+      if (current_author_lowercase == value_lowercase) {
+        filter_list.push_back(book);
+      }
+    }
+  }
+  return filter_list;
+}

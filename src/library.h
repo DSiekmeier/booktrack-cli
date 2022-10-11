@@ -53,7 +53,8 @@ class Library {
   /**
    * @brief Get the complete library as a vector of Books
    */
-  inline auto GetBookCollection() const { return library_books_; }
+  std::vector<Book> GetBookCollection(const std::string& filter = "",
+                                      const std::string& value = "") const;
 
  private:
   std::vector<Book> library_books_;

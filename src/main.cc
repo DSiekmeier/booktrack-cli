@@ -14,8 +14,12 @@ using namespace booktrack_cli;
 namespace {
 
 void SubcmdList(Library& lib, const CliOptionsList& options) {
-  // TODO: evaluate passed options
-  DumpBookCollection(lib.GetBookCollection());
+  if (options.filter_author.empty()) {
+    DumpBookCollection(lib.GetBookCollection());
+  } else {
+    auto filtered_lib = lib.GetBookCollection("author", options.filter_author);
+    DumpBookCollection(filtered_lib);
+  }
 }
 
 void SubcmdAdd(Library& lib, const CliOptionsAdd& options) {

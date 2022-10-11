@@ -28,6 +28,9 @@ Here is a short introduction how to use **booktrack-cli**.
 # List all available books in the given library
 ./booktrack-cli -l ~/my_lib.json list
 
+# List all books in the given library filtered by author (case insensitive)
+./booktrack-cli -l ~/my_lib.json list -a "martin fowler"
+
 # Delete a book from the given library by title
 ./booktrack-cli -l ~/my_lib.json delete --by-title "Effective Modern C++"
 
