@@ -51,7 +51,16 @@ class Library {
   inline auto GetMaxUsedId() const { return max_used_id_; }
 
   /**
-   * @brief Get the complete library as a vector of Books
+   * @brief Get the complete library as a vector of Books by filter
+   *
+   * The filter is currently a simple string which has to match of one the
+   * values described at parameter \p filter. The comparison with \p value will
+   * is case insensitive.
+   *
+   * @param[in] filter  One of the values [author|title]
+   * @param[in] value   The value to search for
+   *
+   * @return A vector of Books matching \p filter and \p value
    */
   std::vector<Book> GetBookCollection(const std::string& filter = "",
                                       const std::string& value = "") const;
