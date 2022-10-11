@@ -21,9 +21,11 @@ void AddMainOptions(CLI::App& app, CliOptions& opt) {
 }
 
 void AddListOptions(CLI::App& app, CliOptions& opt) {
-  app.add_subcommand("list", "List books in the library")->callback([&opt]() {
-    opt.command = PrimaryCommand::kList;
-  });
+  auto sub_list =
+      app.add_subcommand("list", "List books in the library")
+          ->callback([&opt]() { opt.command = PrimaryCommand::kList; });
+
+  sub_list->add_option("-a,--author", opt.list.filter_author, "");
 }
 
 void AddAddOptions(CLI::App& app, CliOptions& opt) {

@@ -37,6 +37,13 @@ struct CliOptionsDel {
 };
 
 /**
+ * @brief Contains available options for the "list" subcommand
+ */
+struct CliOptionsList {
+  std::string filter_author{};
+};
+
+/**
  * @brief Structure containing all options for the command line interface
  */
 struct CliOptions {
@@ -44,6 +51,7 @@ struct CliOptions {
   PrimaryCommand command;
   CliOptionsAdd add;
   CliOptionsDel del;
+  CliOptionsList list;
 };
 
 /**
