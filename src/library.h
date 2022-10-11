@@ -57,7 +57,7 @@ class Library {
    * values described at parameter \p filter. The comparison with \p value will
    * is case insensitive.
    *
-   * @param[in] filter  One of the values [author|title]
+   * @param[in] filter  One of the values [author|title|shelf]
    * @param[in] value   The value to search for
    *
    * @return A vector of Books matching \p filter and \p value
