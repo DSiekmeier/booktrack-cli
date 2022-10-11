@@ -123,6 +123,16 @@ std::vector<Book> Library::GetBookCollection(const std::string& filter,
         filter_list.push_back(book);
       }
     }
+  } else if (filter == "shelf") {
+    for (const auto& book : library_books_) {
+      std::string current_shelf = book.GetShelf();
+      std::string current_shelf_lowercase;
+      std::transform(current_shelf.begin(), current_shelf.end(),
+                     std::back_inserter(current_shelf_lowercase), tolower);
+      if (current_shelf_lowercase == value_lowercase) {
+        filter_list.push_back(book);
+      }
+    }
   }
   return filter_list;
 }

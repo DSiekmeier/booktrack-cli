@@ -27,9 +27,12 @@ void AddListOptions(CLI::App& app, CliOptions& opt) {
 
   auto author = sub_list->add_option("-a,--author", opt.list.filter_author, "");
   auto title = sub_list->add_option("-t,--title", opt.list.filter_title, "");
+  auto shelf = sub_list->add_option("-s,--shelf", opt.list.filter_shelf, "");
 
   // constraints
-  author->excludes(title);
+  author->excludes(title)->excludes(shelf);
+  title->excludes(author)->excludes(shelf);
+  shelf->excludes(author)->excludes(title);
 }
 
 void AddAddOptions(CLI::App& app, CliOptions& opt) {

@@ -42,6 +42,7 @@ struct CliOptionsDel {
 struct CliOptionsList {
   std::string filter_author{};
   std::string filter_title{};
+  std::string filter_shelf{};
 };
 
 /**
