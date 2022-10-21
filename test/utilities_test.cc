@@ -57,3 +57,58 @@ TEST(SplitDateComponents, InvalidInputWrongNumberCount2) {
   // assert
   EXPECT_EQ(result.size(), 0);
 }
+
+TEST(ToLowerCaseTest, InputEmpty) {
+  // arrange
+  std::string test_string{""};
+
+  // act
+  auto result = ToLowerCase(test_string);
+
+  // assert
+  EXPECT_EQ(result, "");
+}
+
+TEST(ToLowerCaseTest, InputAlreadyLowercase) {
+  // arrange
+  std::string test_string{"this is a lowercase string"};
+
+  // act
+  auto result = ToLowerCase(test_string);
+
+  // assert
+  EXPECT_EQ(result, "this is a lowercase string");
+}
+
+TEST(ToLowerCaseTest, InputAllUppercase) {
+  // arrange
+  std::string test_string{"THIS IS AN UPPERCASE STRING"};
+
+  // act
+  auto result = ToLowerCase(test_string);
+
+  // assert
+  EXPECT_EQ(result, "this is an uppercase string");
+}
+
+TEST(ToLowerCaseTest, InputNumericalString) {
+  // arrange
+  std::string test_string{"1234"};
+
+  // act
+  auto result = ToLowerCase(test_string);
+
+  // assert
+  EXPECT_EQ(result, "1234");
+}
+
+TEST(ToLowerCaseTest, InputMixed) {
+  // arrange
+  std::string test_string{"ThisIsA_1234_Mixed_string."};
+
+  // act
+  auto result = ToLowerCase(test_string);
+
+  // assert
+  EXPECT_EQ(result, "thisisa_1234_mixed_string.");
+}

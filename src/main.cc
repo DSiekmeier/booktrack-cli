@@ -22,19 +22,22 @@ void SubcmdList(Library& lib, const CliOptionsList& options) {
 
   // filter by author
   if (!options.filter_author.empty()) {
-    auto filtered_lib = lib.GetBookCollection("author", options.filter_author);
+    auto filtered_lib =
+        lib.GetBookCollection(FilterClass::kAuthor, options.filter_author);
     DumpBookCollection(filtered_lib);
   }
 
   // filter by title
   if (!options.filter_title.empty()) {
-    auto filtered_lib = lib.GetBookCollection("title", options.filter_title);
+    auto filtered_lib =
+        lib.GetBookCollection(FilterClass::kTitle, options.filter_title);
     DumpBookCollection(filtered_lib);
   }
 
   // filter by shelf
   if (!options.filter_shelf.empty()) {
-    auto filtered_lib = lib.GetBookCollection("shelf", options.filter_shelf);
+    auto filtered_lib =
+        lib.GetBookCollection(FilterClass::kShelf, options.filter_shelf);
     DumpBookCollection(filtered_lib);
   }
 }
