@@ -10,6 +10,13 @@
 
 namespace booktrack_cli {
 
+enum class FilterClass {
+  kUndefined,
+  kAuthor,
+  kTitle,
+  kShelf,
+};
+
 /**
  * @brief Represents a collection of books
  * @details The Library class is a collection of tracked books. On the file
@@ -53,17 +60,14 @@ class Library {
   /**
    * @brief Get the complete library as a vector of Books by filter
    *
-   * The filter is currently a simple string which has to match of one the
-   * values described at parameter \p filter. The comparison with \p value will
-   * is case insensitive.
-   *
-   * @param[in] filter  One of the values [author|title|shelf]
+   * @param[in] filter  One of the values of \p FilterClass
    * @param[in] value   The value to search for
    *
    * @return A vector of Books matching \p filter and \p value
    */
-  std::vector<Book> GetBookCollection(const std::string& filter = "",
-                                      const std::string& value = "") const;
+  std::vector<Book> GetBookCollection(
+      const FilterClass& filter = FilterClass::kUndefined,
+      const std::string& value = "") const;
 
  private:
   std::vector<Book> library_books_;

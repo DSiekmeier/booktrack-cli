@@ -56,4 +56,11 @@ void DumpBookCollection(const std::vector<Book> collection) {
   std::cout << "Number of books: " << collection.size() << std::endl
             << std::endl;
 }
+
+std::string ToLowerCase(const std::string& source) {
+  std::string result;
+  std::transform(source.begin(), source.end(), std::back_inserter(result),
+                 tolower);
+  return result;
+}
 }  // namespace booktrack_cli

@@ -7,6 +7,7 @@
 using json = nlohmann::json;
 
 #include "library.h"
+#include "utilities.h"
 using namespace booktrack_cli;
 
 Library::Library(const std::string& library_file_path)
@@ -92,47 +93,48 @@ std::string Library::ToJsonString_() const {
   return collection.dump();
 }
 
-std::vector<Book> Library::GetBookCollection(const std::string& filter,
+std::vector<Book> Library::GetBookCollection(const FilterClass& filter,
                                              const std::string& value) const {
-  if (filter.empty()) {
+  if (filter == FilterClass::kUndefined) {
     return library_books_;
   }
 
-  std::string value_lowercase;
-  std::transform(value.begin(), value.end(),
-                 std::back_inserter(value_lowercase), tolower);
+  auto value_lowercase = ToLowerCase(value);
 
   std::vector<Book> filter_list;
-  if (filter == "author") {
-    for (const auto& book : library_books_) {
-      std::string current_author = book.GetAuthor();
-      std::string current_author_lowercase;
-      std::transform(current_author.begin(), current_author.end(),
-                     std::back_inserter(current_author_lowercase), tolower);
-      if (current_author_lowercase == value_lowercase) {
-        filter_list.push_back(book);
+  switch (filter) {
+    case FilterClass::kAuthor: {
+      for (const auto& book : library_books_) {
+        auto current_author = book.GetAuthor();
+        auto current_author_lowercase = ToLowerCase(current_author);
+        if (current_author_lowercase == value_lowercase) {
+          filter_list.push_back(book);
+        }
       }
-    }
-  } else if (filter == "title") {
-    for (const auto& book : library_books_) {
-      std::string current_title = book.GetTitle();
-      std::string current_title_lowercase;
-      std::transform(current_title.begin(), current_title.end(),
-                     std::back_inserter(current_title_lowercase), tolower);
-      if (current_title_lowercase == value_lowercase) {
-        filter_list.push_back(book);
+    } break;
+    case FilterClass::kTitle: {
+      for (const auto& book : library_books_) {
+        auto current_title = book.GetTitle();
+        auto current_title_lowercase = ToLowerCase(current_title);
+        if (current_title_lowercase == value_lowercase) {
+          filter_list.push_back(book);
+        }
       }
-    }
-  } else if (filter == "shelf") {
-    for (const auto& book : library_books_) {
-      std::string current_shelf = book.GetShelf();
-      std::string current_shelf_lowercase;
-      std::transform(current_shelf.begin(), current_shelf.end(),
-                     std::back_inserter(current_shelf_lowercase), tolower);
-      if (current_shelf_lowercase == value_lowercase) {
-        filter_list.push_back(book);
+    } break;
+    case FilterClass::kShelf: {
+      for (const auto& book : library_books_) {
+        auto current_shelf = book.GetShelf();
+        auto current_shelf_lowercase = ToLowerCase(current_shelf);
+        if (current_shelf_lowercase == value_lowercase) {
+          filter_list.push_back(book);
+        }
       }
-    }
+    } break;
+    case FilterClass::kUndefined:
+      [[fallthrough]];
+    default:
+      break;
   }
+
   return filter_list;
 }

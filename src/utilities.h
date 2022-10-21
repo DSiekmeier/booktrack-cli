@@ -28,6 +28,13 @@ std::vector<int> SplitDateComponents(const std::string& date_string,
  */
 void DumpBookCollection(const std::vector<Book> collection);
 
+/**
+ * @brief Returns a lowercase copy of \p source
+ * 
+ * @param[in] source  string to be transformed
+ * @return    std::string lower case copy of \p source
+ */
+std::string ToLowerCase(const std::string& source);
 }  // namespace booktrack_cli
 
 #endif
