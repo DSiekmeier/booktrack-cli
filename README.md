@@ -8,9 +8,11 @@
 
 ## Features
 
-- Complete functionality is available on the commandline interface
-- Libraries are stored in an open, human readable format (JSON)
-- Your data belongs to you: no communication with any server is necessary
+:heavy_check_mark: The complete functionality like adding books, viewing and filtering the library and so on is available on the commandline interface.
+
+:heavy_check_mark: The libraries are stored in an open, human readable format (JSON) without proprietary dependencies.
+
+:heavy_check_mark: Your data belongs to you: no communication with any server is necessary.
 
 ## Getting Started
 
