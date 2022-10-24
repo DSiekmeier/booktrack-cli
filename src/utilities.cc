@@ -1,3 +1,6 @@
+#include <fmt/color.h>
+#include <fmt/core.h>
+
 #include "utilities.h"
 
 namespace booktrack_cli {
@@ -19,39 +22,34 @@ std::vector<int> SplitDateComponents(const std::string& date_string,
 }
 
 void DumpBookCollection(const std::vector<Book> collection) {
-  constexpr size_t kLengthId{4};
+  constexpr size_t kLengthId{5};
   constexpr size_t kLengthAuthor{25};
   constexpr size_t kLengthTitle{40};
   constexpr size_t kLengthPages{7};
   constexpr size_t kLengthShelf{15};
-  constexpr size_t kLengthReading{6};
+  constexpr size_t kLengthReading{5};
 
-  std::cout << std::endl << std::left;
-  std::cout << std::setw(kLengthId) << "ID";
-  std::cout << std::setw(kLengthAuthor) << "AUTHOR";
-  std::cout << std::setw(kLengthTitle) << "TITLE";
-  std::cout << std::setw(kLengthPages) << "PAGES";
-  std::cout << std::setw(kLengthShelf) << "SHELF";
-  std::cout << std::setw(kLengthReading) << "DAYS";
-  std::cout << std::endl;
-  for (size_t i = 0; i < (kLengthId + kLengthAuthor + kLengthTitle +
-                          kLengthPages + kLengthShelf + kLengthReading);
-       ++i) {
-    std::cout << "-";
-  }
-  std::cout << std::endl;
+  // output table header
+  fmt::print(fmt::emphasis::bold, "{:<{}}", "ID", kLengthId);
+  fmt::print(fmt::emphasis::bold, "{:<{}}", "AUTHOR", kLengthAuthor);
+  fmt::print(fmt::emphasis::bold, "{:<{}}", "TITLE", kLengthTitle);
+  fmt::print(fmt::emphasis::bold, "{:<{}}", "PAGES", kLengthPages);
+  fmt::print(fmt::emphasis::bold, "{:<{}}", "SHELF", kLengthShelf);
+  fmt::print(fmt::emphasis::bold, "{:<{}}", "DAYS", kLengthReading);
+  std::cout << '\n';
 
+  // output library content
   for (const auto& book : collection) {
-    std::cout << std::left;
-    std::cout << std::setw(kLengthId) << book.GetId();
-    std::cout << std::setw(kLengthAuthor) << book.GetAuthor();
-    std::cout << std::setw(kLengthTitle) << book.GetTitle();
-    std::cout << std::setw(kLengthPages) << book.GetPages();
-    std::cout << std::setw(kLengthShelf) << book.GetShelf();
-    std::cout << std::setw(kLengthReading) << book.GetReadingTimeDays();
-    std::cout << std::endl;
+    fmt::print("{:<{}}", book.GetId(), kLengthId);
+    fmt::print("{:<{}}", book.GetAuthor(), kLengthAuthor);
+    fmt::print("{:<{}}", book.GetTitle(), kLengthTitle);
+    fmt::print("{:<{}}", book.GetPages(), kLengthPages);
+    fmt::print("{:<{}}", book.GetShelf(), kLengthShelf);
+    fmt::print("{:<{}}", book.GetReadingTimeDays(), kLengthReading);
+    std::cout << '\n';
   }
 
+  // output footer
   std::cout << std::endl;
   std::cout << "Number of books: " << collection.size() << std::endl
             << std::endl;

@@ -76,4 +76,5 @@ Please refer to [DEVELOPMENT.md](DEVELOPMENT.md) for information about building 
 - [ClangFormat](https://clang.llvm.org/docs/ClangFormat.html): for code formatting with the built-in `Chromium` style
 - [CLI11](https://cliutils.github.io/CLI11/book/): a modern and feature rich command line parsing library
 - [CMake](https://cmake.org/): the tool of choice to build **booktrack-cli**
+- [fmt](https://fmt.dev/): A modern formatting library
 - [JSON for Modern C++](https://json.nlohmann.me/): making the use of JSON in C++ real fun
