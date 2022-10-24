@@ -11,9 +11,6 @@ git clone http://github.com/dsiekmeier/booktrack-cli
 # Build with CMake
 cmake -S. -Bbuild
 cmake --build build
-
-# Run the compiled executable
-./build/booktrack-cli --help
 ```
 
 Unit tests for **booktrack-cli** are written using [GoogleTest](https://google.github.io/googletest).
@@ -57,7 +54,17 @@ cd build
 ./test/booktrack-cli-test
 
 # Generate html report of code coverage
-gcovr -v -r .. -e ../external/ -e ../test/ --html-details index_gcovr.html
+gcovr -r .. -e ../external/ -e ../test/ --html-details index_gcovr.html
 ```
 
 The file `index_gcovr.html` is created inside the build folder and contains the results. For more information about gcovr see the [documentation](https://gcovr.com/en/stable/).
+
+## Commit message conventions
+
+To keep the commit history clean please prefix all commit messages with on of the following prefixes:
+
+1. **feature:** This commit will be a directly visible feature for the user, e.g. a new commandline option.
+2. **bugfix:** This commit fixes a bug (obviously).
+3. **docs:** This commit changes the documentation only, whether it is for the user or the developer community.
+4. **refactor:** A code change that neither fixes a bug nor adds a feature, e.g. renaming variables and so on.
+5. **chore:** Changes to the build process, tools or update of third party libraries.
