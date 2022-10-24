@@ -39,6 +39,11 @@ else()
 endif()
 # ===================================================================
 
+# EXTERNAL BUILDS ===================================================
+add_subdirectory(external/fmt)
+find_package(fmt)
+# ===================================================================
+
 # BUILD LIBRARY =====================================================
 add_library(${PROJECT_NAME}-lib OBJECT
     src/book.cc
@@ -51,6 +56,11 @@ target_include_directories(${PROJECT_NAME}-lib
     PRIVATE
         ${PROJECT_BINARY_DIR}
         ${PROJECT_SOURCE_DIR}/external/
+)
+
+target_link_libraries(${PROJECT_NAME}-lib
+    PRIVATE
+        fmt::fmt
 )
 # ===================================================================
 
