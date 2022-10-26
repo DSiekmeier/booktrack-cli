@@ -1,32 +1,7 @@
-# Prerequisites
-*.d
+# IDE settings
+.vscode/*
+!.vscode/c_cpp_properties.json
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+# Build directories
+build/
+cmake-build-*/
