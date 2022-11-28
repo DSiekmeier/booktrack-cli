@@ -60,6 +60,12 @@ void AddDeleteOptions(CLI::App& app, CliOptions& opt) {
   id->excludes(title);
 }
 
+void AddStatisticsOptions(CLI::App& app, CliOptions& opt) {
+  auto sub_statistics =
+      app.add_subcommand("statistics", "Show statistics for loaded library")
+          ->callback([&opt]() { opt.command = PrimaryCommand::kStatistics; });
+}
+
 }  // namespace
 
 void booktrack_cli::AddCliOptions(CLI::App& app, CliOptions& opt) {
@@ -67,4 +73,5 @@ void booktrack_cli::AddCliOptions(CLI::App& app, CliOptions& opt) {
   AddAddOptions(app, opt);
   AddDeleteOptions(app, opt);
   AddListOptions(app, opt);
+  AddStatisticsOptions(app, opt);
 }

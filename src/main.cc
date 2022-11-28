@@ -7,6 +7,7 @@
 #include "book.h"
 #include "cli.h"
 #include "library.h"
+#include "statistics.h"
 #include "utilities.h"
 
 using namespace booktrack_cli;
@@ -73,6 +74,11 @@ void SubcmdDelete(Library& lib, const CliOptionsDel& options) {
   }
 }
 
+void SubcmdStatistics(Library& lib, const CliOptionsStatistics& options) {
+  Statistics stats(lib);
+  stats.DumpStatistics();
+}
+
 }  // namespace
 
 int main(int argc, char* argv[]) {
@@ -92,6 +98,9 @@ int main(int argc, char* argv[]) {
       break;
     case PrimaryCommand::kList:
       SubcmdList(library_from_file, options.list);
+      break;
+    case PrimaryCommand::kStatistics:
+      SubcmdStatistics(library_from_file, options.statistics);
       break;
     default:
       break;

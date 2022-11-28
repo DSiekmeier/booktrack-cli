@@ -54,9 +54,10 @@ Options:
   -l,--library TEXT REQUIRED  Set the path of the library
 
 Subcommands:
-  list                        List books in the library
   add                         Add a book to the library
   delete                      Delete a book from the library
+  list                        List books in the library
+  statistics                  Show statistics for loaded library
 ```
 
 ## Notes

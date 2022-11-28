@@ -10,6 +10,9 @@ add_executable(${PROJECT_NAME}-test
 
     # Tests for the free functions in utilities
     utilities_test.cc
+
+    # Tests for the "Statistics" class
+    statistics_test.cc
 )
 
 target_include_directories(${PROJECT_NAME}-test
