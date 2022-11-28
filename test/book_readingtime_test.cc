@@ -53,3 +53,18 @@ TEST(BookGeneralTest, GetReadingTimeDaysEndDateMissing) {
   // assert
   EXPECT_EQ(result_days, 0);
 }
+
+TEST(BookGeneralTest, GetReadingEnd) {
+  // arrange
+  Book book("title");
+  book.SetReadingEnd(31, 12, 2022);
+
+  // act
+  auto reading_end = book.GetReadingEnd();
+  struct tm buf;
+  localtime_r(&reading_end, &buf);
+  auto result = buf.tm_year + 1900;
+
+  // assert
+  EXPECT_EQ(result, 2022);
+}

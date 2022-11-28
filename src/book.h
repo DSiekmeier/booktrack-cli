@@ -46,6 +46,11 @@ class Book {
   inline auto GetAuthor() const { return author_; }
 
   /**
+   * @brief Get the reading end time of the current book
+   */
+  inline auto GetReadingEnd() const { return reading_.date_end; }
+
+  /**
    * @brief Get the reading time of the current book in days
    */
   inline auto GetReadingTimeDays() const { return reading_time_days_; }
