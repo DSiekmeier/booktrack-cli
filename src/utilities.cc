@@ -21,6 +21,23 @@ std::vector<int> SplitDateComponents(const std::string& date_string,
   return elements;
 }
 
+std::string AbbreviateTextIfNecessary(const std::string& text,
+                                      const size_t max_length) {
+  const std::string replace_text{"... "};
+  if (text.empty())
+    return text;
+
+  if (max_length < replace_text.length())
+    return "";
+
+  std::string new_string{text};
+  if (text.length() >= max_length) {
+    new_string.replace(max_length - replace_text.length(), std::string::npos,
+                       replace_text);
+  }
+  return new_string;
+}
+
 void DumpBookCollection(const std::vector<Book> collection) {
   constexpr size_t kLengthId{5};
   constexpr size_t kLengthAuthor{25};
@@ -41,10 +58,25 @@ void DumpBookCollection(const std::vector<Book> collection) {
   // output library content
   for (const auto& book : collection) {
     fmt::print("{:<{}}", book.GetId(), kLengthId);
-    fmt::print("{:<{}}", book.GetAuthor(), kLengthAuthor);
-    fmt::print("{:<{}}", book.GetTitle(), kLengthTitle);
+
+    // shorten author
+    auto current_author = book.GetAuthor();
+    fmt::print("{:<{}}",
+               AbbreviateTextIfNecessary(current_author, kLengthAuthor),
+               kLengthAuthor);
+
+    // shorten the title
+    auto current_title = book.GetTitle();
+    fmt::print("{:<{}}", AbbreviateTextIfNecessary(current_title, kLengthTitle),
+               kLengthTitle);
+
     fmt::print("{:<{}}", book.GetPages(), kLengthPages);
-    fmt::print("{:<{}}", book.GetShelf(), kLengthShelf);
+
+    // shorten the name of the shelf
+    auto current_shelf = book.GetShelf();
+    fmt::print("{:<{}}", AbbreviateTextIfNecessary(current_shelf, kLengthShelf),
+               kLengthShelf);
+
     fmt::print("{:<{}}", book.GetReadingTimeDays(), kLengthReading);
     std::cout << '\n';
   }
