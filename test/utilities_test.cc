@@ -112,3 +112,51 @@ TEST(ToLowerCaseTest, InputMixed) {
   // assert
   EXPECT_EQ(result, "thisisa_1234_mixed_string.");
 }
+
+TEST(AbbreviateTextIfNecessaryTest, TextShortEnough) {
+  // arrange
+  std::string input{"This is a short text"};
+  const size_t kMaxLength{30};
+
+  // act
+  const auto result = AbbreviateTextIfNecessary(input, kMaxLength);
+
+  // assert
+  EXPECT_EQ(result, input);
+  EXPECT_EQ(result.length(), input.length());
+}
+
+TEST(AbbreviateTextIfNecessaryTest, TextTooLong) {
+  // arrange
+  std::string input{"This text is longer than the one in the test above!"};
+  const size_t kMaxLength{30};
+
+  // act
+  const auto result = AbbreviateTextIfNecessary(input, kMaxLength);
+
+  // assert
+  EXPECT_EQ(result.length(), kMaxLength);
+  EXPECT_EQ(result, "This text is longer than t... ");
+}
+
+TEST(AbbreviateTextIfNecessaryTest, TextIsEmpty) {
+  // arrange
+  std::string input{""};
+
+  // act
+  const auto result = AbbreviateTextIfNecessary(input, 10);
+
+  // assert
+  EXPECT_EQ(result.length(), 0);
+}
+
+TEST(AbbreviateTextIfNecessaryTest, MaxLengthIsZero) {
+  // arrange
+  std::string input{"foobarbaz"};
+
+  // act
+  const auto result = AbbreviateTextIfNecessary(input, 0);
+
+  // assert
+  EXPECT_EQ(result.length(), 0);
+}
