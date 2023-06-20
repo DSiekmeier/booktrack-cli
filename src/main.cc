@@ -6,6 +6,7 @@
 
 #include "book.h"
 #include "cli.h"
+#include "details.h"
 #include "library.h"
 #include "statistics.h"
 #include "utilities.h"
@@ -79,6 +80,17 @@ void SubcmdStatistics(Library& lib, const CliOptionsStatistics& options) {
   stats.DumpStatistics();
 }
 
+void SubcmdDetails(Library& lib, const CliOptionsDetails& options) {
+  // DumpBookDetails(options.id);
+  auto check_exist = lib.GetBookById(options.id);
+  if (check_exist.has_value()) {
+    auto book = check_exist.value();
+    DumpBookDetails(book);
+  } else {
+    std::cout << "Could not find a book with id: " << options.id << ".\n";
+  }
+}
+
 }  // namespace
 
 int main(int argc, char* argv[]) {
@@ -101,6 +113,9 @@ int main(int argc, char* argv[]) {
       break;
     case PrimaryCommand::kStatistics:
       SubcmdStatistics(library_from_file, options.statistics);
+      break;
+    case PrimaryCommand::kDetails:
+      SubcmdDetails(library_from_file, options.details);
       break;
     default:
       break;

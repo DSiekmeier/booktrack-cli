@@ -48,6 +48,7 @@ find_package(fmt)
 add_library(${PROJECT_NAME}-lib OBJECT
     src/book.cc
     src/cli.cc
+    src/details.cc
     src/library.cc
     src/statistics.cc
     src/utilities.cc
