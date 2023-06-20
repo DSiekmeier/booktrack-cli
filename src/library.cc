@@ -138,3 +138,13 @@ std::vector<Book> Library::GetBookCollection(const FilterClass& filter,
 
   return filter_list;
 }
+
+std::optional<Book> Library::GetBookById(const size_t id) const {
+  for (const auto& book : library_books_) {
+    auto current_id = book.GetId();
+    if (current_id == id) {
+      return book;
+    }
+  }
+  return std::nullopt;
+}

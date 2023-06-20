@@ -1,6 +1,7 @@
 #ifndef BOOKTRACK_CLI_LIBRARY_H
 #define BOOKTRACK_CLI_LIBRARY_H
 
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -68,6 +69,14 @@ class Library {
   std::vector<Book> GetBookCollection(
       const FilterClass& filter = FilterClass::kUndefined,
       const std::string& value = "") const;
+
+  /**
+   * @brief Get a Book instance by its ID
+   *
+   * @param[in] id  Id of the requested book
+   * @return Copy of the requested book, std::nullopt if nothing was found
+   */
+  std::optional<Book> GetBookById(const size_t id) const;
 
  private:
   std::vector<Book> library_books_;
