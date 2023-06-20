@@ -75,7 +75,8 @@ void SubcmdDelete(Library& lib, const CliOptionsDel& options) {
   }
 }
 
-void SubcmdStatistics(Library& lib, const CliOptionsStatistics& options) {
+void SubcmdStatistics(Library& lib,
+                      [[maybe_unused]] const CliOptionsStatistics& options) {
   Statistics stats(lib);
   stats.DumpStatistics();
 }
