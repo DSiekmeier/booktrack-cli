@@ -66,6 +66,14 @@ void AddStatisticsOptions(CLI::App& app, CliOptions& opt) {
           ->callback([&opt]() { opt.command = PrimaryCommand::kStatistics; });
 }
 
+void AddDetailsOptions(CLI::App& app, CliOptions& opt) {
+  auto sub_details =
+      app.add_subcommand("details", "Show details for a book")
+          ->callback([&opt]() { opt.command = PrimaryCommand::kDetails; });
+
+  auto id = sub_details->add_option("--by-id", opt.details.id, "")->mandatory();
+}
+
 }  // namespace
 
 void booktrack_cli::AddCliOptions(CLI::App& app, CliOptions& opt) {
@@ -74,4 +82,5 @@ void booktrack_cli::AddCliOptions(CLI::App& app, CliOptions& opt) {
   AddDeleteOptions(app, opt);
   AddListOptions(app, opt);
   AddStatisticsOptions(app, opt);
+  AddDetailsOptions(app, opt);
 }
