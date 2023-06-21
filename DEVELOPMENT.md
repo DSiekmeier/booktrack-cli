@@ -38,7 +38,12 @@ The result will than be located at `./build/generated_docs/html/`.
 
 ## Static code analyzer
 
-Currently while building the souce code `clang-tidy` is invoked with a small set of rules. The number of rules might grow in future, especially regarding the [C++ Core Guidelines ](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines.html) and the ["modernize-*"](https://clang.llvm.org/extra/clang-tidy/checks/list.html) rules of clang-tidy. Please be aware that the build might take a little bit longer because of the analyzes.
+It is recommended to run the static code analyzer, which is currently `clang-tidy` before merging code to the `main` branch. The repository root contains a predefined `.clang-tidy` file for this purpose:
+
+```bash
+# Run clang-tidy
+./tools/run-clang-tidy.sh
+```
 
 ## Code coverage using gcovr
 
