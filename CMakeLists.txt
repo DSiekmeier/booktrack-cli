@@ -29,16 +29,6 @@ else()
 endif()
 # ===================================================================
 
-# CONFIGURE STATIC CODE ANALYZER ====================================
-set(CLANG_TIDY_NAME "clang-tidy")
-find_program(CLANG_TIDY_FOUND ${CLANG_TIDY_NAME})
-if(CLANG_TIDY_FOUND)
-    set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY_NAME})
-else()
-    message("warning: clang-tidy executable not found!")
-endif()
-# ===================================================================
-
 # EXTERNAL BUILDS ===================================================
 add_subdirectory(external/fmt)
 find_package(fmt)
