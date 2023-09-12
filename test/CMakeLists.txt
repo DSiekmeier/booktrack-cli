@@ -25,6 +25,7 @@ target_link_libraries(${PROJECT_NAME}-test
     ${GTEST_BOTH_LIBRARIES}
     ${CMAKE_THREAD_LIBS_INIT}
     ${PROJECT_NAME}-lib
+    fmt::fmt
 )
 
 add_test(${PROJECT_NAME}-test
