@@ -31,7 +31,6 @@ endif()
 
 # EXTERNAL BUILDS ===================================================
 add_subdirectory(external/fmt)
-find_package(fmt)
 # ===================================================================
 
 # BUILD LIBRARY =====================================================
@@ -70,6 +69,7 @@ target_include_directories(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
     PRIVATE
         ${PROJECT_NAME}-lib
+        fmt::fmt
 )
 # ===================================================================
 
