@@ -52,10 +52,14 @@ void Statistics::CalculateReadingDaysPerBook_() {
 void Statistics::CountFinishedBooksPerYear_() {
   for (const auto& book : book_collection_) {
     auto reading_end = book.GetReadingEnd();
-    struct tm buf;
-    localtime_r(&reading_end, &buf);
-    auto current_year = buf.tm_year + 1900;
-    statistics_.books_per_year[current_year] += 1;
+    if (reading_end) {
+      struct tm buf;
+      localtime_r(&reading_end, &buf);
+      auto current_year = buf.tm_year + 1900;
+      statistics_.books_per_year[current_year] += 1;
+    } else {
+      statistics_.unfinished_books++;
+    }
   }
 }
 
@@ -66,9 +70,12 @@ void Statistics::DumpGeneralLibraryStatistics_() const {
   fmt::print(fmt::emphasis::underline, "Library Statistics Summary\n");
   fmt::print("\n");
 
-  fmt::print("{:{}}", "Number of books in the library", kLengthPretext);
+  fmt::print("{:{}}", "Total number of books", kLengthPretext);
   fmt::print(": {}\n",
              fmt::styled(statistics_.number_of_books, fmt::emphasis::bold));
+  fmt::print("{:{}}", "Unfinished number of books", kLengthPretext);
+  fmt::print(": {}\n",
+             fmt::styled(statistics_.unfinished_books, fmt::emphasis::bold));
 
   fmt::print("{:{}}", "Average reading time per book", kLengthPretext);
   fmt::print(": {0:.2f} days\n", fmt::styled(statistics_.reading_days_per_book,
@@ -87,8 +94,9 @@ void Statistics::DumpGeneralLibraryStatistics_() const {
   fmt::print("\n");
 
   for (const auto& year : statistics_.books_per_year) {
-    fmt::print("{}: {} books\n", year.first,
-               fmt::styled(year.second, fmt::emphasis::bold));
+    std::string message = year.second > 1 ? "books" : "book";
+    fmt::print("{}: {} {}\n", year.first,
+               fmt::styled(year.second, fmt::emphasis::bold), message);
   }
 
   fmt::print("\n");

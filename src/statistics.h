@@ -14,11 +14,12 @@
 namespace booktrack_cli {
 
 struct library_statistics {
-  size_t number_of_books;
-  float reading_days_per_book;
-  size_t authors;
-  size_t shelfs;
+  size_t number_of_books{};
+  float reading_days_per_book{};
+  size_t authors{};
+  size_t shelfs{};
   std::map<int, size_t> books_per_year{};  // year -> count
+  size_t unfinished_books{};
 };
 
 /**
