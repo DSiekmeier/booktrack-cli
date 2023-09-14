@@ -58,6 +58,7 @@ Subcommands:
   delete                      Delete a book from the library
   list                        List books in the library
   statistics                  Show statistics for loaded library
+  details                     Show details for a book
 ```
 
 ## Notes
