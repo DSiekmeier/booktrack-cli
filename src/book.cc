@@ -35,16 +35,16 @@ std::string Book::ToJsonString() const {
 }
 
 void Book::SetDataFromJson(const nlohmann::json& book_json) {
-  title_ = book_json["bookinfo"]["title"];
-  author_ = book_json["bookinfo"]["author"];
-  pages_ = book_json["bookinfo"]["pages"];
+  title_ = book_json.at("bookinfo").at("title");
+  author_ = book_json.at("bookinfo").at("author");
+  pages_ = book_json.at("bookinfo").at("pages");
 
-  reading_.date_start = book_json["reading"]["start"];
-  reading_.date_end = book_json["reading"]["end"];
+  reading_.date_start = book_json.at("reading").at("start");
+  reading_.date_end = book_json.at("reading").at("end");
   UpdateReadingTimeDays_();
 
-  shelf_ = book_json["shelf"];
-  id_ = book_json["id"];
+  shelf_ = book_json.at("shelf");
+  id_ = book_json.at("id");
 }
 
 bool Book::SetReadingStart(const int day, const int month, const int year) {

@@ -1,3 +1,4 @@
+#include <exception>
 #include <string>
 #include <vector>
 
@@ -100,25 +101,35 @@ int main(int argc, char* argv[]) {
   AddCliOptions(app, options);
   CLI11_PARSE(app, argc, argv);
 
-  Library library_from_file(options.library_file_path);
+  try {
+    Library library_from_file(options.library_file_path);
 
-  switch (options.command) {
-    case PrimaryCommand::kAdd:
-      SubcmdAdd(library_from_file, options.add);
-      break;
-    case PrimaryCommand::kDelete:
-      SubcmdDelete(library_from_file, options.del);
-      break;
-    case PrimaryCommand::kList:
-      SubcmdList(library_from_file, options.list);
-      break;
-    case PrimaryCommand::kStatistics:
-      SubcmdStatistics(library_from_file, options.statistics);
-      break;
-    case PrimaryCommand::kDetails:
-      SubcmdDetails(library_from_file, options.details);
-      break;
-    default:
-      break;
+    switch (options.command) {
+      case PrimaryCommand::kAdd:
+        SubcmdAdd(library_from_file, options.add);
+        break;
+      case PrimaryCommand::kDelete:
+        SubcmdDelete(library_from_file, options.del);
+        break;
+      case PrimaryCommand::kList:
+        SubcmdList(library_from_file, options.list);
+        break;
+      case PrimaryCommand::kStatistics:
+        SubcmdStatistics(library_from_file, options.statistics);
+        break;
+      case PrimaryCommand::kDetails:
+        SubcmdDetails(library_from_file, options.details);
+        break;
+      default:
+        break;
+    }
+  } catch (const nlohmann::json::exception& ex) {
+    std::cout << "Failed to load the library. :-(" << '\n';
+    std::cout << "details:" << '\n';
+    std::cout << "   " << ex.what() << '\n';
+  } catch (const std::exception& ex) {
+    std::cout << "Some unknown error occurred. :-(\n";
+    std::cout << "details:" << '\n';
+    std::cout << "   " << ex.what() << '\n';
   }
 }

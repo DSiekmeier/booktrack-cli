@@ -86,6 +86,8 @@ class Book {
 
   /**
    * @brief Sets all information of a Book instance from a JSON object
+   * 
+   * @throws std::exception subclass on error
    */
   void SetDataFromJson(const nlohmann::json& book_json);
 
