@@ -13,6 +13,9 @@ add_executable(${PROJECT_NAME}-test
 
     # Tests for the "Statistics" class
     statistics_test.cc
+
+    # Tests for the "SysInfoAggregator" class
+    sysinfoaggregator_test.cc
 )
 
 target_include_directories(${PROJECT_NAME}-test

@@ -1,16 +1,34 @@
 #include "cli.h"
+#include "sysinfoaggregator.h"
 
 using namespace booktrack_cli;
 
 namespace {
 
 void AddMainOptions(CLI::App& app, CliOptions& opt) {
+  // modify version flag and output system information if available
   app.set_version_flag("--version", []() {
+    SysInfo system_information{"<invalid value>", "<invalid value>"};
+    try {
+      SysInfoAggregator sysinfo("/etc/os-release");
+      system_information = sysinfo.GetSysInfo();
+    } catch (const std::runtime_error& ex) {
+      std::cout << ex.what() << '\n';
+    }
+
     std::stringstream version_string;
     version_string << BOOKTRACK_CLI_VERSION_MAJOR << "."
                    << BOOKTRACK_CLI_VERSION_MINOR << "."
                    << BOOKTRACK_CLI_VERSION_PATCH;
-    return "booktrack-cli v" + version_string.str();
+
+    const auto booktrack_version =
+        "booktrack-cli v" + version_string.str() + '\n';
+    const auto os_release_name =
+        "OS name   : " + system_information.os_release_name + '\n';
+    const auto os_release_version =
+        "OS version: " + system_information.os_release_version + '\n';
+
+    return booktrack_version + '\n' + os_release_name + os_release_version;
   });
 
   app.add_option("-l,--library,", opt.library_file_path,

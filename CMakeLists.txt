@@ -40,6 +40,7 @@ add_library(${PROJECT_NAME}-lib OBJECT
     src/details.cc
     src/library.cc
     src/statistics.cc
+    src/sysinfoaggregator.cc
     src/utilities.cc
 )
 
