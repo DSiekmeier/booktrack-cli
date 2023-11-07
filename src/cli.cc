@@ -91,6 +91,17 @@ void AddDetailsOptions(CLI::App& app, CliOptions& opt) {
   sub_details->add_option("--by-id", opt.details.id, "")->mandatory();
 }
 
+void AddEditOptions(CLI::App& app, CliOptions& opt) {
+  auto sub_edit =
+      app.add_subcommand("edit", "Edit a book in the library")
+          ->callback([&opt]() { opt.command = PrimaryCommand::kEdit; });
+
+  sub_edit->add_option("--by-id", opt.edit.id, "")->mandatory();
+  sub_edit->add_option("-t,--title", opt.edit.changeset.title, "");
+  sub_edit->add_option("-a,--author", opt.edit.changeset.author, "");
+  sub_edit->add_option("-p,--pages", opt.edit.changeset.pages, "");
+}
+
 }  // namespace
 
 void booktrack_cli::AddCliOptions(CLI::App& app, CliOptions& opt) {
@@ -100,4 +111,5 @@ void booktrack_cli::AddCliOptions(CLI::App& app, CliOptions& opt) {
   AddListOptions(app, opt);
   AddStatisticsOptions(app, opt);
   AddDetailsOptions(app, opt);
+  AddEditOptions(app, opt);
 }

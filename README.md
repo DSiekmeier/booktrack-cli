@@ -40,6 +40,9 @@ Here is a short introduction how to use **booktrack-cli**.
 
 # Delete a book from the given library by the book id
 ./booktrack-cli -l ~/my_lib.json delete --by-id 2
+
+# Edit the title of the book from the given library with the book id 4
+./booktrack-cli -l ~/my_lib.json edit --by-id 4 --title "Introduction to Algorithms"
 ```
 
 You can see a full list of commandline options below.
@@ -59,6 +62,7 @@ Subcommands:
   list                        List books in the library
   statistics                  Show statistics for loaded library
   details                     Show details for a book
+  edit                        Edit a book in the library
 ```
 
 ## Notes
