@@ -16,6 +16,7 @@ enum class PrimaryCommand {
   kDelete,
   kStatistics,
   kDetails,
+  kEdit,
 };
 
 /**
@@ -60,6 +61,14 @@ struct CliOptionsDetails {
 };
 
 /**
+ * @brief Contains available options for the "edit" subcommand
+ */
+struct CliOptionsEdit {
+  size_t id{0};
+  CliOptionsAdd changeset;
+};
+
+/**
  * @brief Structure containing all options for the command line interface
  */
 struct CliOptions {
@@ -70,6 +79,7 @@ struct CliOptions {
   CliOptionsList list;
   CliOptionsStatistics statistics;
   CliOptionsDetails details;
+  CliOptionsEdit edit;
 };
 
 /**

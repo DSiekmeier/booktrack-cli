@@ -41,9 +41,19 @@ class Book {
   inline auto GetTitle() const { return title_; };
 
   /**
+   * @brief Set the title of the current book
+   */
+  inline auto SetTitle(const std::string& title) { title_ = title; }
+
+  /**
    * @brief Get the author of the current book
    */
   inline auto GetAuthor() const { return author_; }
+
+  /**
+   * @brief Set the author of the current book
+   */
+  inline auto SetAuthor(const std::string& author) { author_ = author; }
 
   /**
    * @brief Get the reading end time of the current book
@@ -59,6 +69,11 @@ class Book {
    * @brief Get the number of pages of the current book
    */
   inline auto GetPages() const { return pages_; }
+
+  /**
+   * @brief Set the number of pages of the current book
+   */
+  inline auto SetPages(unsigned int pages) { pages_ = pages; }
 
   /**
    * @brief Get the shelf to which the current book belongs to
@@ -86,7 +101,7 @@ class Book {
 
   /**
    * @brief Sets all information of a Book instance from a JSON object
-   * 
+   *
    * @throws std::exception subclass on error
    */
   void SetDataFromJson(const nlohmann::json& book_json);

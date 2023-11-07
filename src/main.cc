@@ -93,6 +93,32 @@ void SubcmdDetails(Library& lib, const CliOptionsDetails& options) {
   }
 }
 
+void SubcmdEdit(Library& lib, [[maybe_unused]] const CliOptionsEdit& options) {
+  auto check_exist = lib.GetBookById(options.id);
+
+  if (check_exist.has_value()) {
+    auto book = check_exist.value();
+    auto changes = options.changeset;
+
+    // update book
+    if (!changes.title.empty()) {
+      book.SetTitle(changes.title);
+    }
+
+    if (!changes.author.empty()) {
+      book.SetAuthor(changes.author);
+    }
+
+    book.SetPages(changes.pages);
+
+    // Update library
+    lib.RemoveBookById(book.GetId());
+    lib.AddBook(book).StoreToFile();
+  } else {
+    std::cout << "Could not find a book with id: " << options.id << ".\n";
+  }
+}
+
 }  // namespace
 
 int main(int argc, char* argv[]) {
@@ -119,6 +145,9 @@ int main(int argc, char* argv[]) {
         break;
       case PrimaryCommand::kDetails:
         SubcmdDetails(library_from_file, options.details);
+        break;
+      case PrimaryCommand::kEdit:
+        SubcmdEdit(library_from_file, options.edit);
         break;
       default:
         break;
