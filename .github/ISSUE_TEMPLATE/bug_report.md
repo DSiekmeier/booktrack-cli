@@ -13,9 +13,8 @@ A clear and concise description of what the bug is.
 **To Reproduce**
 Steps to reproduce the behavior:
 1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+2. Enter '....'
+3. See error
 
 **Expected behavior**
 A clear and concise description of what you expected to happen.
@@ -23,9 +22,11 @@ A clear and concise description of what you expected to happen.
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
-**Version information:**
- - OS: [e.g. iOS]
- - program version [e.g. 22]
+**Version information (please add output of "booktrack-cli --version"**
+booktrack-cli v< *INSERT INFO* >
+
+OS name   : < *INSERT INFO* >
+OS version: < *INSERT INFO* >
 
 **Additional context**
 Add any other context about the problem here.
