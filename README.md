@@ -1,10 +1,8 @@
 # :books: About booktrack-cli
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/dsiekmeier/booktrack-cli?style=flat-square) ![GitHub last commit](https://img.shields.io/github/last-commit/dsiekmeier/booktrack-cli?style=flat-square) ![GitHub](https://img.shields.io/github/license/dsiekmeier/booktrack-cli?style=flat-square)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/dsiekmeier/booktrack-cli?style=flat-square) ![GitHub](https://img.shields.io/github/license/dsiekmeier/booktrack-cli?style=flat-square)
 
 **booktrack-cli** is a booktracking application for commandline enthusiasts. One focus of the development is an extensive availability of reading statistics.
-
-:construction: This is a relatively new project and there are still some important features missing. Feel free to give your feedback!
 
 ## Features
 
