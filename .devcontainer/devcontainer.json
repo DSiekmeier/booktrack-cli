@@ -1,0 +1,6 @@
+{
+	"name": "booktrack-cli",
+	"build": {
+		"dockerfile": "../Dockerfile"
+	}
+}
